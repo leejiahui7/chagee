@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHAGEE · APAC Communications Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #EA1C24;
+      --brown:  #592704;
+      --cream:  #FDF8F3;
+      --ink:    #1A0A00;
+      --muted:  #7A5C4A;
+      --rule:   #E8D5C4;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(253,248,243,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--red); letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 48px 80px;
+      gap: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -80px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(234,28,36,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px; background: var(--red);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 900; line-height: 1.05;
+      color: var(--ink); margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--red);
+    }
+    .hero-sub {
+      font-size: 16px; line-height: 1.7; color: var(--muted);
+      max-width: 460px; margin-bottom: 40px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      background: var(--red); color: var(--white);
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      border: 2px solid var(--red);
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover { background: transparent; color: var(--red); }
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    /* right panel */
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 20px; align-items: flex-start;
+    }
+    .stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 24px 20px;
+      position: relative;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%; background: var(--red);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 900;
+      color: var(--red); line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-top: 6px;
+    }
+    .chagee-logo-big {
+      width: 100%; max-width: 360px; padding: 32px 0;
+    }
+
+    /* ─── SHARED SECTION STYLES ─── */
+    section { padding: 96px 48px; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 900; color: var(--ink);
+      margin-bottom: 48px; max-width: 640px;
+    }
+    hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0 48px; }
+
+    /* ─── SITUATION ─── */
+    .situation { background: var(--ink); color: var(--white); }
+    .situation .section-label { color: var(--red); }
+    .situation .section-title { color: var(--white); max-width: 800px; margin-bottom: 56px; }
+    .sit-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .sit-item {
+      background: rgba(255,255,255,0.04);
+      padding: 36px 28px;
+      border-top: 2px solid rgba(234,28,36,0.3);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .sit-item:hover {
+      border-color: var(--red);
+      background: rgba(234,28,36,0.06);
+    }
+    .sit-icon { font-size: 28px; margin-bottom: 16px; }
+    .sit-item h3 {
+      font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+      color: var(--white); margin-bottom: 10px; text-transform: uppercase;
+    }
+    .sit-item p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+    /* ─── STRATEGY ─── */
+    .strategy { background: var(--cream); }
+    .strategy-intro {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start;
+      margin-bottom: 64px;
+    }
+    .strategy-intro p { font-size: 16px; line-height: 1.8; color: var(--muted); }
+    .pillars {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .pillar {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 32px 24px;
+      position: relative; overflow: hidden;
+    }
+    .pillar::after {
+      content: attr(data-n);
+      position: absolute; bottom: -10px; right: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 80px; font-weight: 900;
+      color: rgba(234,28,36,0.06); line-height: 1;
+      pointer-events: none;
+    }
+    .pillar h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--red);
+      margin-bottom: 12px;
+    }
+    .pillar p { font-size: 13px; line-height: 1.75; color: var(--muted); }
+    .pillar ul { list-style: none; margin-top: 16px; }
+    .pillar ul li {
+      font-size: 12px; color: var(--muted);
+      padding: 5px 0; border-top: 1px solid var(--rule);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .pillar ul li::before { content: '→'; color: var(--red); flex-shrink: 0; }
+
+    /* ─── MARKETS ─── */
+    .markets { background: var(--white); }
+    .markets-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    .market-card {
+      border: 1px solid var(--rule); padding: 32px;
+      display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start;
+    }
+    .market-flag {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      background: var(--cream);
+    }
+    .market-info h3 {
+      font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px;
+    }
+    .market-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--red); padding: 3px 10px; margin-bottom: 10px;
+    }
+    .market-tag.estd { background: var(--brown); }
+    .market-tag.emrg { background: var(--red); opacity: 0.7; }
+    .market-info p { font-size: 13px; line-height: 1.65; color: var(--muted); }
+
+    /* ─── MEDIA ─── */
+    .media-section { background: var(--cream); }
+    .media-intro { max-width: 700px; margin-bottom: 48px; }
+    .media-intro p { font-size: 16px; line-height: 1.8; color: var(--muted); }
+    .network-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 48px;
+    }
+    .network-item {
+      background: var(--white); padding: 24px 16px; text-align: center;
+      transition: background 0.2s;
+    }
+    .network-item:hover { background: rgba(234,28,36,0.04); }
+    .network-item .outlet {
+      font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px;
+    }
+    .network-item .contact {
+      font-size: 11px; color: var(--red); font-style: italic;
+    }
+    .network-item .market {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 4px;
+    }
+    .media-types {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .media-type {
+      padding: 24px; background: var(--white); border: 1px solid var(--rule);
+    }
+    .media-type h4 {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--brown); margin-bottom: 8px;
+    }
+    .media-type p { font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+    /* ─── CALENDAR ─── */
+    .calendar { background: var(--ink); }
+    .calendar .section-label { color: var(--red); }
+    .calendar .section-title { color: var(--white); }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    }
+    .quarter {
+      background: rgba(255,255,255,0.03); padding: 28px 24px;
+      border-top: 2px solid rgba(89,39,4,0.5);
+    }
+    .quarter-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 16px;
+    }
+    .quarter ul { list-style: none; }
+    .quarter ul li {
+      font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6;
+      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .quarter ul li span { color: rgba(234,28,36,0.8); font-weight: 600; }
+
+    /* ─── GOVT AFFAIRS ─── */
+    .govt { background: var(--white); }
+    .govt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .govt-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .govt-col p { font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 16px; }
+    .govt-list { list-style: none; }
+    .govt-list li {
+      font-size: 13px; color: var(--muted); padding: 8px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .govt-list li::before { content: '◆'; color: var(--red); font-size: 8px; margin-top: 4px; flex-shrink: 0; }
+
+    /* ─── KPIs ─── */
+    .kpis { background: var(--cream); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .kpi-card {
+      background: var(--white); border: 1px solid var(--rule); padding: 28px;
+    }
+    .kpi-card .kpi-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 900; color: var(--red); line-height: 1;
+    }
+    .kpi-card .kpi-unit { font-size: 14px; color: var(--red); }
+    .kpi-card h4 {
+      font-size: 13px; font-weight: 600; color: var(--ink);
+      margin: 10px 0 6px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .kpi-card p { font-size: 12px; line-height: 1.6; color: var(--muted); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.4);
+      padding: 48px 48px 32px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 24px;
+    }
+    footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 900; color: var(--red);
+    }
+    footer .footer-note { font-size: 11px; line-height: 1.6; max-width: 360px; }
+    footer .footer-credit { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+      .hero-visual { display: none; }
+      section { padding: 64px 24px; }
+      hr.rule { margin: 0 24px; }
+      .sit-grid, .pillars, .cal-grid { grid-template-columns: 1fr; }
+      .markets-grid, .govt-grid, .kpi-grid { grid-template-columns: 1fr; }
+      .network-grid { grid-template-columns: repeat(2, 1fr); }
+      .media-types { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px 28px; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <!-- CHAGEE-style teacup/leaf emblem SVG -->
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" fill="#EA1C24"/>
+        <path d="M10 22c0 4 3.6 6 8 6s8-2 8-6V14H10v8z" fill="white"/>
+        <path d="M26 16c2-1 4 0 4 2s-2 3-4 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="18" cy="14" rx="8" ry="2" fill="white" opacity="0.6"/>
+        <path d="M15 10c0 0 1-3 3-3s3 3 3 3" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <span>CHAGEE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#situation">Situation</a></li>
+      <li><a href="#strategy">Strategy</a></li>
+      <li><a href="#markets">Markets</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#kpis">KPIs</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">APAC Communications Strategy</div>
+      <h1>Tea Culture.<br><em>Regional</em><br>Authority.</h1>
+      <p class="hero-sub">A sharp, market-by-market communications playbook for CHAGEE's next phase of APAC growth — rooted in cultural authenticity, trusted media, and government partnership.</p>
+      <a class="hero-cta" href="#situation">
+        Read the strategy
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-visual">
+      <!-- CHAGEE big logotype in brand red -->
+      <svg class="chagee-logo-big" viewBox="0 0 360 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="76" font-family="Georgia, serif" font-size="84" font-weight="bold" fill="#EA1C24" letter-spacing="-2">CHAGEE</text>
+        <line x1="0" y1="88" x2="360" y2="88" stroke="#592704" stroke-width="2"/>
+        <text x="0" y="100" font-family="Arial, sans-serif" font-size="11" fill="#7A5C4A" letter-spacing="8">霸王茶姬 · APAC</text>
+      </svg>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">7,338</div>
+          <div class="stat-label">Stores globally Q3 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">+75%</div>
+          <div class="stat-label">Overseas GMV YoY</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">APAC markets active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100</div>
+          <div class="stat-label">Target countries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- SITUATION -->
+  <section class="situation" id="situation">
+    <div class="section-label">01 · Situation</div>
+    <h2 class="section-title">CHAGEE is winning product. The next battle is narrative.</h2>
+    <div class="sit-grid">
+      <div class="sit-item reveal">
+        <div class="sit-icon">🚀</div>
+        <h3>Rapid Expansion</h3>
+        <p>Six active APAC markets in 2025 — Malaysia, Singapore, Thailand, Indonesia, Philippines, Vietnam — with 300 net new locations in Q3 alone. Speed creates communication gaps that competitors will exploit.</p>
+      </div>
+      <div class="sit-item reveal">
+        <div class="sit-icon">🫖</div>
+        <h3>Brand Perception Risk</h3>
+        <p>91% revenue concentration in the tea latte category is a strength and a vulnerability. CHAGEE must own the "premium oriental tea" narrative before local and Western competitors do.</p>
+      </div>
+      <div class="sit-item reveal">
+        <div class="sit-icon">🌏</div>
+        <h3>Cultural Translation</h3>
+        <p>Yunnan heritage and 霸王茶姬 brand equity don't translate automatically. Each APAC market demands a distinct localisation strategy — from Malaysia's Telepuk campaigns to Singapore's premium lifestyle positioning.</p>
+      </div>
+      <div class="sit-item reveal">
+        <div class="sit-icon">📋</div>
+        <h3>Regulatory Complexity</h3>
+        <p>F&B licensing, halal certification, food labelling standards, and foreign brand regulations vary across six markets. Government affairs is not optional — it is a market entry prerequisite.</p>
+      </div>
+      <div class="sit-item reveal">
+        <div class="sit-icon">📰</div>
+        <h3>Media Fragmentation</h3>
+        <p>APAC media is fractured across English, Mandarin, Bahasa, Thai, Filipino, and Vietnamese. Coordinating consistent messaging across this landscape without a regional comms function is not sustainable.</p>
+      </div>
+      <div class="sit-item reveal">
+        <div class="sit-icon">📈</div>
+        <h3>Post-IPO Scrutiny</h3>
+        <p>Listed on NASDAQ in April 2025, CHAGEE is now a public company. Investor relations, ESG narrative, and media accuracy are non-negotiable. Reputation risk has a direct share price dimension.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- STRATEGY -->
+  <section class="strategy" id="strategy">
+    <div class="section-label">02 · Strategy</div>
+    <h2 class="section-title">Four pillars. One coherent APAC voice.</h2>
+    <div class="strategy-intro">
+      <div>
+        <p>The strategic objective is simple: make CHAGEE the undisputed premium modern tea authority in APAC — not just the biggest tea brand, but the most culturally trusted one.</p>
+      </div>
+      <p>Every market is different. But the brand voice must be recognisable across all of them. This strategy builds a regional comms architecture that is consistent at the top and locally intelligent at the edges — giving country teams clear frameworks while preserving the creative latitude to resonate.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal" data-n="I">
+        <h3>Cultural Authority</h3>
+        <p>Position CHAGEE as the global ambassador of modern oriental tea culture, not merely an F&B brand.</p>
+        <ul>
+          <li>Heritage storytelling from Yunnan to APAC</li>
+          <li>Cultural collaboration campaigns per market</li>
+          <li>Press trips to Yunnan for regional editors</li>
+          <li>Annual Modern Oriental Tea Summit</li>
+        </ul>
+      </div>
+      <div class="pillar reveal" data-n="II">
+        <h3>Media Velocity</h3>
+        <p>Build a proactive regional media engine that gets ahead of launches, issues, and competitor narratives.</p>
+        <ul>
+          <li>24-hour response standard for all media</li>
+          <li>Monthly regional PR cadence calendar</li>
+          <li>Lifestyle, F&B, and business media split</li>
+          <li>Flagship outlet editorial partnerships</li>
+        </ul>
+      </div>
+      <div class="pillar reveal" data-n="III">
+        <h3>Government Trust</h3>
+        <p>Build durable relationships with regulators, trade bodies, and ministries before crises occur.</p>
+        <ul>
+          <li>Market-by-market stakeholder maps</li>
+          <li>Proactive halal and food safety briefings</li>
+          <li>Industry association memberships</li>
+          <li>Country team GR support protocols</li>
+        </ul>
+      </div>
+      <div class="pillar reveal" data-n="IV">
+        <h3>Issues Readiness</h3>
+        <p>Maintain a live issues register and pre-built response playbooks so no crisis catches the team unprepared.</p>
+        <ul>
+          <li>Quarterly risk horizon scans per market</li>
+          <li>Pre-approved holding statement library</li>
+          <li>24/7 escalation protocol by market</li>
+          <li>Monthly brand sentiment monitoring</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- MARKETS -->
+  <section class="markets" id="markets">
+    <div class="section-label">03 · Priority Markets</div>
+    <h2 class="section-title">Every market has its own story.</h2>
+    <div class="markets-grid">
+      <div class="market-card reveal">
+        <div class="market-flag">🇲🇾</div>
+        <div class="market-info">
+          <span class="market-tag estd">Flagship</span>
+          <h3>Malaysia</h3>
+          <p>CHAGEE's first and most mature international market. 200+ tea houses. Strategy here is about maintaining brand prestige, deepening Malay and Chinese media relationships, and managing the halal certification narrative. Telepuk cultural campaign is a model for regional replication. Focus: BFM Radio, Media Permata, Borneo Bulletin, Bernama.</p>
+        </div>
+      </div>
+      <div class="market-card reveal">
+        <div class="market-flag">🇸🇬</div>
+        <div class="market-info">
+          <span class="market-tag estd">Established</span>
+          <h3>Singapore</h3>
+          <p>Premium lifestyle positioning is key. Singapore media is English-first, demanding, and sceptical of hype. Invest in Straits Times, CNA, and SGAG relationships. Leverage Singapore's role as APAC comms hub. Government engagement via STB, ESG, and SFA for food safety trust-building. The Singapore market sets the tone for regional investor and trade media.</p>
+        </div>
+      </div>
+      <div class="market-card reveal">
+        <div class="market-flag">🇹🇭</div>
+        <div class="market-info">
+          <span class="market-tag estd">Established</span>
+          <h3>Thailand</h3>
+          <p>Strong local tea culture creates both opportunity and complexity — CHAGEE must differentiate from Thai tea. Social-first media strategy: Thai influencer ecosystem is powerful. Government relations with the FDA and Ministry of Commerce are priority for expansion permits. Bangkok-centric media with National and Post English outlets as key targets.</p>
+        </div>
+      </div>
+      <div class="market-card reveal">
+        <div class="market-flag">🇮🇩</div>
+        <div class="market-info">
+          <span class="market-tag emrg">Growth</span>
+          <h3>Indonesia</h3>
+          <p>Largest APAC market by population. Muslim-majority — halal positioning is non-negotiable and a genuine competitive advantage. Antara and Jakarta Post are key wire relationships. BPOM regulatory navigation critical. Local language content (Bahasa Indonesia netspeak) essential for social and influencer channels. Target Tier 1 Jakarta malls for grand opening PR.</p>
+        </div>
+      </div>
+      <div class="market-card reveal">
+        <div class="market-flag">🇵🇭</div>
+        <div class="market-info">
+          <span class="market-tag emrg">Growth</span>
+          <h3>Philippines</h3>
+          <p>Exceptional launch momentum — grand opening drew massive crowds August 2025. High social media affinity market. Philippine Star, Manila Bulletin, and ABS-CBN online are priority media targets. FDA Philippines engagement for product approvals. Local cultural tie-ins (Filipino hospitality and community) will amplify brand warmth narratives.</p>
+        </div>
+      </div>
+      <div class="market-card reveal">
+        <div class="market-flag">🇻🇳</div>
+        <div class="market-info">
+          <span class="market-tag emrg">Emerging</span>
+          <h3>Vietnam</h3>
+          <p>Newest market entry. Vietnam's café culture and young demographic are a natural fit. Media strategy: Thanh Nien, VnExpress for credibility. Social strategy: Zalo and TikTok Vietnam are essential. Ministry of Industry and Trade engagement for franchise licensing. Cultural authenticity messaging must be sensitive to Vietnam-China relationship dynamics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- MEDIA NETWORK -->
+  <section class="media-section" id="media">
+    <div class="section-label">04 · Media Network</div>
+    <h2 class="section-title">Trusted relationships. Not press release blasts.</h2>
+    <div class="media-intro reveal">
+      <p>Effective APAC PR is not about distribution — it is about trust. The below network of senior journalists and editors across priority outlets represents active relationships available to CHAGEE from day one. Each contact has verified beat relevance and a track record of substantive coverage.</p>
+    </div>
+    <div class="network-grid reveal">
+      <div class="network-item">
+        <div class="outlet">Straits Times</div>
+        <div class="contact">Diane</div>
+        <div class="market">Singapore · English</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Bloomberg Asia</div>
+        <div class="contact">Minmin</div>
+        <div class="market">APAC · Business</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">CNA</div>
+        <div class="contact">Sophia</div>
+        <div class="market">Singapore · Broadcast</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Lianhe Zaobao</div>
+        <div class="contact">Renqi</div>
+        <div class="market">Singapore · Mandarin</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">SGAG</div>
+        <div class="contact">Adrian</div>
+        <div class="market">Singapore · Social</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Jakarta Post</div>
+        <div class="contact">Andes</div>
+        <div class="market">Indonesia · English</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Antara</div>
+        <div class="contact">Aries</div>
+        <div class="market">Indonesia · Wire</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Borneo Bulletin</div>
+        <div class="contact">James</div>
+        <div class="market">Brunei · English</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">Media Permata</div>
+        <div class="contact">Sim</div>
+        <div class="market">Brunei · Bahasa</div>
+      </div>
+      <div class="network-item">
+        <div class="outlet">BFM Radio</div>
+        <div class="contact">Melissa</div>
+        <div class="market">Malaysia · Business</div>
+      </div>
+    </div>
+    <div class="media-types reveal">
+      <div class="media-type">
+        <h4>Lifestyle &amp; F&amp;B</h4>
+        <p>Product launches, grand openings, and cultural campaigns require lifestyle writers and F&B specialists who can generate premium editorial coverage — not just product mentions. Target: food and lifestyle verticals of all major dailies plus dedicated F&B publications per market.</p>
+      </div>
+      <div class="media-type">
+        <h4>Business &amp; Investor</h4>
+        <p>As a NASDAQ-listed company, CHAGEE's expansion milestones, GMV growth, and ESG commitments are legitimate business news. Bloomberg, Reuters, and business desks of major APAC broadsheets need a dedicated communications track separate from consumer PR.</p>
+      </div>
+      <div class="media-type">
+        <h4>Government &amp; Trade</h4>
+        <p>Regulatory approvals, halal certification milestones, community hiring commitments, and local sourcing partnerships generate positive coverage in trade and government-adjacent media — critical for relationship-building with ministries and trade associations.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- CALENDAR -->
+  <section class="calendar" id="calendar">
+    <div class="section-label">05 · Annual PR Calendar</div>
+    <h2 class="section-title">Proactive beats reactive.</h2>
+    <div class="cal-grid">
+      <div class="quarter reveal">
+        <div class="quarter-label">Q1 · Jan–Mar</div>
+        <ul>
+          <li><span>Jan</span> Chinese New Year brand campaign APAC</li>
+          <li><span>Jan</span> Regional media briefing — year ahead</li>
+          <li><span>Feb</span> Valentine's Day product launch pitching</li>
+          <li><span>Feb</span> Quarterly sentiment report to leadership</li>
+          <li><span>Mar</span> Investor/business media outreach post Q4 results</li>
+          <li><span>Mar</span> GR meetings — halal bodies Malaysia, Indonesia</li>
+        </ul>
+      </div>
+      <div class="quarter reveal">
+        <div class="quarter-label">Q2 · Apr–Jun</div>
+        <ul>
+          <li><span>Apr</span> Ramadan wrap and brand retrospective</li>
+          <li><span>Apr</span> New market entry announcement (pipeline)</li>
+          <li><span>May</span> International Tea Day (21 May) — flagship press event</li>
+          <li><span>May</span> Product innovation media preview</li>
+          <li><span>Jun</span> Mid-year brand health review</li>
+          <li><span>Jun</span> Grand opening PR — next market</li>
+        </ul>
+      </div>
+      <div class="quarter reveal">
+        <div class="quarter-label">Q3 · Jul–Sep</div>
+        <ul>
+          <li><span>Jul</span> Singapore National Day brand activation</li>
+          <li><span>Aug</span> National Day activations — Malaysia, Indonesia</li>
+          <li><span>Aug</span> Back-to-school health and wellness push</li>
+          <li><span>Sep</span> Yunnan heritage press trip for editors</li>
+          <li><span>Sep</span> Q3 GMV story — business media outreach</li>
+          <li><span>Sep</span> Issues register review — Q4 prep</li>
+        </ul>
+      </div>
+      <div class="quarter reveal">
+        <div class="quarter-label">Q4 · Oct–Dec</div>
+        <ul>
+          <li><span>Oct</span> Deepavali / Diwali inclusive tea campaign</li>
+          <li><span>Nov</span> 11.11 regional media campaign support</li>
+          <li><span>Nov</span> Year-end brand report to leadership</li>
+          <li><span>Dec</span> Christmas and year-end activations</li>
+          <li><span>Dec</span> Annual media appreciation events per market</li>
+          <li><span>Dec</span> Forward planning locked for following year</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- GOVT AFFAIRS -->
+  <section class="govt" id="govt">
+    <div class="section-label">06 · Government Affairs</div>
+    <h2 class="section-title">Regulatory trust is a competitive moat.</h2>
+    <div class="govt-grid">
+      <div class="govt-col reveal">
+        <h3>Stakeholder Mapping</h3>
+        <p>Build and maintain a live stakeholder map across all six APAC markets, covering food safety regulators, halal certification bodies, trade ministries, industry associations, and local government partners.</p>
+        <ul class="govt-list">
+          <li>SFA Singapore — food safety and import licensing</li>
+          <li>JAKIM Malaysia — halal certification authority</li>
+          <li>BPOM Indonesia — food and drug regulatory body</li>
+          <li>FDA Thailand and Philippines — product approvals</li>
+          <li>Ministry of Industry and Trade Vietnam — franchise licensing</li>
+          <li>ASEAN Business Advisory Council — regional advocacy</li>
+        </ul>
+      </div>
+      <div class="govt-col reveal">
+        <h3>Regulatory Vulnerability Radar</h3>
+        <p>Track legislative and regulatory movements across markets that could affect CHAGEE's operations — sugar tax legislation, foreign brand franchise rules, social media advertising laws, and food labelling updates.</p>
+        <ul class="govt-list">
+          <li>Monthly regulatory scan per market — flagged to leadership</li>
+          <li>Pre-emptive minister and ministry briefings on product health credentials</li>
+          <li>Localisation of health and wellness narrative per regulatory environment</li>
+          <li>Crisis protocol for food safety incidents — 24-hour response standard</li>
+          <li>Annual government stakeholder appreciation events per market</li>
+          <li>ESG reporting alignment with local CSR expectations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- KPIs -->
+  <section class="kpis" id="kpis">
+    <div class="section-label">07 · Success Metrics</div>
+    <h2 class="section-title">Clippings are vanity. These are the numbers that matter.</h2>
+    <div class="kpi-grid">
+      <div class="kpi-card reveal">
+        <div class="kpi-num">48<span class="kpi-unit">hrs</span></div>
+        <h4>Media Response SLA</h4>
+        <p>All media enquiries acknowledged within 4 hours, substantive response within 48 hours across all six markets. Tracked per outlet per quarter.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <div class="kpi-num">85<span class="kpi-unit">%</span></div>
+        <h4>Positive Sentiment Target</h4>
+        <p>Monthly brand sentiment monitoring across APAC markets. Target 85% positive or neutral coverage across mainstream and social media. Reported to APAC leadership monthly.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <div class="kpi-num">12</div>
+        <h4>Strategic Placements / Quarter</h4>
+        <p>Tier-1 editorial placements per quarter across the six APAC markets — business, lifestyle, and government-adjacent media. Quality of outlet and tonality weighted, not clip count alone.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <div class="kpi-num">6</div>
+        <h4>Government Touchpoints / Market</h4>
+        <p>Minimum six meaningful government or regulatory touchpoints per market per year — proactive engagement, not just reactive crisis management.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <div class="kpi-num">0</div>
+        <h4>Unmanaged Brand Crises</h4>
+        <p>Every reputational incident has a pre-built response playbook. Zero situations where CHAGEE is caught without a holding statement within 2 hours of an issue breaking.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <div class="kpi-num">100<span class="kpi-unit">%</span></div>
+        <h4>Launch PR Coverage Rate</h4>
+        <p>Every grand opening and product launch in every market receives pre-planned media outreach and confirmed coverage in at least one Tier-1 outlet before doors open.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">CHAGEE · APAC</div>
+      <div class="footer-note">Communications and Public Affairs Strategy · Lee Jia Hui · 2026</div>
+    </div>
+    <div class="footer-credit">leejiahui7.github.io/chagee</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
